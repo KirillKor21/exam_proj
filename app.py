@@ -50,11 +50,13 @@ def cheking():
     token = request.form.get('token')
     if username and token and Tbank.query.filter_by(username=username).first():
         user = Tbank.query.filter_by(username=username).first()
+        print(token)
+        print(user.token)
+        print(str(user.token) == str(token))
         if user.token == token:
-
             return render_template("view.html", username=user.username, summ=user.full_sum, percent=percent(user.full_sum))
         else:
-            return redirect("/view")
+            return redirect("/fall")
     else:
         return redirect("/fall")
 
