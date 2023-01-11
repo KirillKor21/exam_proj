@@ -10,7 +10,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:secret@192.168.31
 db.init_app(app)
 
 
-
 class Tbank(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), nullable=False)
@@ -32,26 +31,29 @@ def main():
     return render_template("main.html")
 
 
-@app.route("/view")
+@app.route("/view",  methods=['GET', 'POST'])
 def view():
     return render_template("view.html")
+
+
+@app.route("/fall")
+def fall():
+    return render_template("fall.html")
+
 
 @app.route("/checking", methods=['POST'])
 def cheking():
     username = request.form.get('username')
     token = request.form.get('token')
-    print(username)
-    print(token)
-    if username and token:
+    if username and token and Tbank.query.filter_by(username=username).first():
         user = Tbank.query.filter_by(username=username).first()
-        print(user)
         if user.token == token:
 
             return render_template("view.html", username=user.username, summ=user.full_sum, percent=percent(user.full_sum))
         else:
-            return redirect("fall.html")
+            return redirect("/fall")
     else:
-        return redirect("fall.html")
+        return redirect("/fall")
 
 
 def percent(full_sum):
