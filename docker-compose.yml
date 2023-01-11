@@ -14,8 +14,8 @@ services:
       - '5432:5432'
 
   app:
-    container_name: exam_prog
-    image: kirillkrot21/exam_prog:v1
+    container_name: exam_proj
+    image: kirillkrot21/exam_proj:v1
     build:
       context: .
       dockerfile: Dockerfile

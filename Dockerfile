@@ -1,7 +1,7 @@
 FROM ubuntu
 
-COPY . /home/exam_prog
-WORKDIR /home/exam_prog
+COPY . /home/exam_proj
+WORKDIR /home/exam_proj
 
 ENV VIRTUAL_ENV=/opt/venv
 RUN apt-get update && apt-get install -y python3 && apt install -y python3.10-venv && python3 -m venv $VIRTUAL_ENV

@@ -4,8 +4,12 @@
 {% block body %}
 <h1>Тут страница main </h1>
 
-
-
+<h2> Введите имя пользователя и токен </h2>
+<form method="post" action="/checking">
+  <input type="text" name="username"><br>
+  <input type="password" name="token">
+  <button type="submit"> Check </button>
+</form>
 
 
 
