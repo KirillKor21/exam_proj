@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -32,14 +32,27 @@ def main():
     return render_template("main.html")
 
 
+@app.route("/view")
+def view():
+    return render_template("view.html")
+
 @app.route("/checking", methods=['POST'])
 def cheking():
     username = request.form.get('username')
     token = request.form.get('token')
+    print(username)
+    print(token)
     if username and token:
         user = Tbank.query.filter_by(username=username).first()
+        print(user)
         if user.token == token:
-            return user.full_sum
+
+            return render_template("view.html", username=user.username, summ=user.full_sum, percent=percent(user.full_sum))
+        else:
+            return redirect("fall.html")
+    else:
+        return redirect("fall.html")
+
 
 def percent(full_sum):
     if int(full_sum) > 1000000:
