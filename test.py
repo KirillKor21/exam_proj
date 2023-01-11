@@ -24,7 +24,6 @@ class TestAPI(unittest.TestCase):
         self.assertEqual(self.resp, 9)
         print("test4: OK")
 
-
 if __name__ == '__main__':
     tester = TestAPI()
     tester.test1()

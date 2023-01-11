@@ -54,7 +54,7 @@ def cheking():
 
             return render_template("view.html", username=user.username, summ=user.full_sum, percent=percent(user.full_sum))
         else:
-            return redirect("/fall")
+            return redirect("/view")
     else:
         return redirect("/fall")
 
