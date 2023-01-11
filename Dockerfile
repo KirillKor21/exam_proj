@@ -11,4 +11,5 @@ RUN pip3 install -r requirements.txt
 
 RUN flake8 --exit-zero app.py && bandit --exit-zero  app.py
 
-CMD ["python", "-m", "test.py"]
+CMD ["python", "app.py"]
+CMD ["python", "test.py"]
