@@ -10,6 +10,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:secret@192.168.31
 db.init_app(app)
 
 
+
 class Tbank(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), nullable=False)
